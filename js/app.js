@@ -1,49 +1,18 @@
-var Player = (function () {
-    function Player() {
-    }
-    Player.prototype.formatName = function () {
-        return this.name.toUpperCase();
-    };
-    return Player;
-}());
-function startGame() {
-    var playerName = getInputValue('playername');
-    logPlayer(playerName);
-    postScore(80, playerName);
-    postScore(-5, playerName);
-}
-function logPlayer(name) {
-    if (name === void 0) { name = 'MultiMath Player'; }
-    console.log("New game starting for player: " + name);
-}
-function postScore(score, playerName) {
-    if (playerName === void 0) { playerName = 'MultiMath Player'; }
-    var logger;
-    if (score < 0) {
-        logger = logError;
-    }
-    else {
-        logger = logMessage;
-    }
-    var scoreElement = document.getElementById('postedScores');
-    scoreElement.innerText = score + " - " + playerName;
-    logger("Score: " + score);
-}
-function getInputValue(elementID) {
-    var inputElement = document.getElementById(elementID);
-    if (inputElement.value === '') {
-        return undefined;
-    }
-    else {
-        return inputElement.value;
-    }
-}
-document.getElementById('startGame').addEventListener('click', startGame);
-var logMessage = function (message) { return console.log(message); };
-function logError(error) {
-    console.error(error);
-}
-var firstPlayer = new Player();
-firstPlayer.name = 'Lanier';
-console.log(firstPlayer.formatName());
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var player_1 = require("./player");
+var game_1 = require("./game");
+var Helpers = require("./utility");
+var newGame;
+document.getElementById('startGame').addEventListener('click', function () {
+    var player = new player_1.Player();
+    player.name = Helpers.getValue('playername');
+    var problemCount = Number(Helpers.getValue('problemCount'));
+    var factor = Number(Helpers.getValue('factor'));
+    newGame = new game_1.Game(player, problemCount, factor);
+    newGame.displayGame();
+});
+document.getElementById('calculate').addEventListener('click', function () {
+    newGame.calculateScore();
+});
 //# sourceMappingURL=app.js.map
