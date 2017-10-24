@@ -5,7 +5,7 @@ function startGame() {
     logPlayer(playerName);
 
     let messagesElement: HTMLElement | null = document.getElementById('messages');
-    messagesElement1.innerText = 'Welcome to MultiMath! Starting new game...';
+    messagesElement.innerText = 'Welcome to MultiMath! Starting new game...';
     console.log('Starting new game.');
 }
 
