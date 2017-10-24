@@ -1,3 +1,4 @@
+/// <reference path="player.ts"/>
 function startGame() {
     // starting a new game
     var playerName = getInputValue('playername');
@@ -36,3 +37,6 @@ var logMessage = function (message) { return console.log(message); };
 function logError(error) {
     console.error(error);
 }
+var firstPlayer = new Player();
+firstPlayer.name = 'Lanier';
+console.log(firstPlayer.formatName());
